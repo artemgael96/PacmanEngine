@@ -1,0 +1,17 @@
+D:\ConsoleApp\obj\Debug\ConsoleApp.csprojAssemblyReference.cache
+D:\ConsoleApp\bin\Debug\ConsoleApp.exe.config
+D:\ConsoleApp\bin\Debug\ConsoleApp.exe
+D:\ConsoleApp\bin\Debug\ConsoleApp.pdb
+D:\ConsoleApp\bin\Debug\PacmanEngine.dll
+D:\ConsoleApp\bin\Debug\MonoGame.Framework.dll
+D:\ConsoleApp\bin\Debug\TextureBuilder.dll
+D:\ConsoleApp\bin\Debug\SharpDX.MediaFoundation.dll
+D:\ConsoleApp\bin\Debug\SharpDX.dll
+D:\ConsoleApp\bin\Debug\SharpDX.XAudio2.dll
+D:\ConsoleApp\bin\Debug\SharpDX.DXGI.dll
+D:\ConsoleApp\bin\Debug\SharpDX.Direct3D11.dll
+D:\ConsoleApp\bin\Debug\SharpDX.Direct2D1.dll
+D:\ConsoleApp\bin\Debug\SharpDX.XInput.dll
+D:\ConsoleApp\obj\Debug\ConsoleApp.csproj.CopyComplete
+D:\ConsoleApp\obj\Debug\ConsoleApp.exe
+D:\ConsoleApp\obj\Debug\ConsoleApp.pdb
