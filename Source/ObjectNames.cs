@@ -7,5 +7,6 @@
         public const string Ghost = "Ghost";
         public const string Background = "Background";
         public const string Pacman = "Pacman";
+        public const string Manager = "Manager";
     }
 }

@@ -51,7 +51,10 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Source\GameObjects\GameObject.cs" />
+    <Compile Include="Source\GameObjects\GhostBace.cs" />
+    <Compile Include="Source\GameObjects\ManagerObject.cs" />
     <Compile Include="Source\GameObjects\Pacman.cs" />
+    <Compile Include="Source\Helpers\CoordinateExtension.cs" />
     <Compile Include="Source\ObjectNames.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Source\ObjectsBuilder.cs" />

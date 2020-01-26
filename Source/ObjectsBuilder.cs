@@ -36,6 +36,19 @@ namespace ConsoleApp.Source
                 case '4':
                     gameObjects.Add(new Pacman(x, y));
                     break;
+                case '5':
+                    gameObjects.Add(new GameObject(x, y, ObjectNames.Ghost, AnimationType.BlinkyUp));
+                    break;
+                case '6':
+                    gameObjects.Add(new GameObject(x, y, ObjectNames.Ghost, AnimationType.PinkyLeft));
+                    break;
+                case '7':
+                    gameObjects.Add(new GameObject(x, y, ObjectNames.Ghost, AnimationType.ClydeDown));
+                    break;
+                case '8':
+                    gameObjects.Add(new GameObject(x, y, ObjectNames.Ghost, AnimationType.InkyRight));
+                    break;
+
             }
 
             if (squareType != '0')
