@@ -8,6 +8,13 @@ namespace ConsoleApp.Source
     {
         public static bool[,] Grid = new bool[Coordinate.WorldWidth / Coordinate.Multiplier, Coordinate.WorldHeight / Coordinate.Multiplier];
 
+        public static bool isSquareEmpty(Coordinate coordinate) {
+            var x = ((Coordinate.WorldWidth + coordinate.X) % Coordinate.WorldWidth) / Coordinate.Multiplier;
+            var y = ((Coordinate.WorldHeight + coordinate.Y) % Coordinate.WorldHeight) / Coordinate.Multiplier;
+
+            return Grid[x,y];
+        }
+
         public static bool CanMove(Coordinate position, Coordinate direction)
         {
             var roundX = position.X % Coordinate.Multiplier == 0;

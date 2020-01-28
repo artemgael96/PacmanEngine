@@ -50,6 +50,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Source\GameObjects\BlinkyObject.cs" />
     <Compile Include="Source\GameObjects\GameObject.cs" />
     <Compile Include="Source\GameObjects\GhostBace.cs" />
     <Compile Include="Source\GameObjects\ManagerObject.cs" />

@@ -17,11 +17,10 @@ namespace ConsoleApp.Source
             foreach (var square in initializer.Split(' ').SelectMany((row, y) => row.Select((ch, x) => new { ch, x, y })))
                 InitSquare(square.ch, square.x, square.y, objects);
 
-            var path = PathFinder.GetPath(new Coordinate(5000000, 13000000), new Coordinate(15000000, 13000000));
-
+            ManagerObject managerObject = new ManagerObject(objects);
+            managerObject.Initialize(objects);
             Engine.Run(objects);
         }
-
         private static void InitSquare(char squareType, int x, int y, List<GameObject> gameObjects)
         {
             // Wall = 0, Empty = 1, SmallCoin = 2, BigCoin = 3, Pacman = 4, Blinky = 5, Pinky = 6, Inky = 7, Clyde = 8.
@@ -37,18 +36,17 @@ namespace ConsoleApp.Source
                     gameObjects.Add(new Pacman(x, y));
                     break;
                 case '5':
-                    gameObjects.Add(new GameObject(x, y, ObjectNames.Ghost, AnimationType.BlinkyUp));
+                    gameObjects.Add(new BlinkyObject(x, y));
                     break;
-                case '6':
-                    gameObjects.Add(new GameObject(x, y, ObjectNames.Ghost, AnimationType.PinkyLeft));
-                    break;
-                case '7':
-                    gameObjects.Add(new GameObject(x, y, ObjectNames.Ghost, AnimationType.ClydeDown));
-                    break;
-                case '8':
-                    gameObjects.Add(new GameObject(x, y, ObjectNames.Ghost, AnimationType.InkyRight));
-                    break;
-
+                //case '6':
+                //    gameObjects.Add(new GhostBace(x, y, ObjectNames.Ghost, AnimationType.PinkyLeft));
+                //    break;
+                //case '7':
+                //    gameObjects.Add(new GhostBace(x, y, ObjectNames.Ghost, AnimationType.ClydeDown));
+                //    break;
+                //case '8':
+                //    gameObjects.Add(new GhostBace(x, y, ObjectNames.Ghost, AnimationType.InkyRight));
+                //    break;
             }
 
             if (squareType != '0')
