@@ -8,24 +8,48 @@ using PacmanEngine.Components.Actors;
 using PacmanEngine.Components.Base;
 using PacmanEngine.Components.Graphics;
 
+using ConsoleApp.Source.GameObjects.Ghosts;
+
 namespace ConsoleApp.Source.GameObjects
 {
-    class ManagerObject : IGameObject
+    class Manager : IGameObject
     {
-        public static ManagerObject Instance { get; private set; }
-        public void Initialize(IEnumerable<IGameObject> gameObjects) 
+        public static Manager Instance { get; private set; }
+        public void Initialize(IEnumerable<IGameObject> gameObjects)
         {
-            Instance = new ManagerObject(gameObjects);
+            Instance = new Manager(gameObjects);
         }
-        public string Name => ObjectNames.Manager; 
+        public string Name => ObjectNames.Manager;
         public bool IsEnabled { get { return true; } set { } }
+        //public bool BigCoinEatenByPacman { get { return true; } set { } }
         public Animation Animation { get; set; }
 
         private readonly IGameObject pacman;
         private readonly IGameObject background;
         private readonly IGameObject[] ghost;
 
-        public Coordinate PacmanLocation { get { return pacman != null ? pacman.Animation.Location : new Coordinate(0, 0); } }
+        public void BigCoinEatenByPacman() {
+           var changedGhostStateToBlueGhost = GhostBace.GhostState.BlueGhost;
+           var animationBackgound = AnimationFactory.CreateAnimation(AnimationType.MazeWhite);
+            AnimationType animationType = AnimationType.BlueGhost;
+            //if () {
+                var a = Blinky.GhostState.Regular;
+                a = changedGhostStateToBlueGhost;
+                //Pinky.GhostState.BlueGhost;
+                //Inky.GhostState.BlueGhost;
+                //Clyde.GhostState.BlueGhost;
+            //} 
+            //Animation.Location = new Coordinate(0, 0);
+        }
+ 
+
+
+        public Coordinate PacmanLocation {
+            get
+            {
+                return pacman != null ? pacman.Animation.Location : new Coordinate(0, 0);
+            }
+        }
         public Coordinate PacmanDirection { 
             get
             {
@@ -45,8 +69,7 @@ namespace ConsoleApp.Source.GameObjects
                 }
             }
         }
-        private ManagerObject() { }
-        public ManagerObject(IEnumerable<IGameObject> gameObjects) 
+        public Manager(IEnumerable<IGameObject> gameObjects) 
         {
             pacman = gameObjects.Single(x => x.Name == ObjectNames.Pacman);
             background = gameObjects.Single(x => x.Name == ObjectNames.Background);
@@ -55,6 +78,6 @@ namespace ConsoleApp.Source.GameObjects
             //if (ghost.Length != 4)
             //    throw new Exception("Wrong number of ghost");
         }
-        public void Update() { }
+        public void Update() {}
     }
 }

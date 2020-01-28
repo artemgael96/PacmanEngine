@@ -1,4 +1,5 @@
 ﻿using ConsoleApp.Source.GameObjects;
+using ConsoleApp.Source.GameObjects.Ghosts;
 using PacmanEngine.Components.Base;
 using PacmanEngine.Components.Graphics;
 using System.Collections.Generic;
@@ -17,7 +18,7 @@ namespace ConsoleApp.Source
             foreach (var square in initializer.Split(' ').SelectMany((row, y) => row.Select((ch, x) => new { ch, x, y })))
                 InitSquare(square.ch, square.x, square.y, objects);
 
-            ManagerObject managerObject = new ManagerObject(objects);
+            Manager managerObject = new Manager(objects);
             managerObject.Initialize(objects);
             Engine.Run(objects);
         }
@@ -36,17 +37,17 @@ namespace ConsoleApp.Source
                     gameObjects.Add(new Pacman(x, y));
                     break;
                 case '5':
-                    gameObjects.Add(new BlinkyObject(x, y));
+                    gameObjects.Add(new Blinky(x, y));
                     break;
-                //case '6':
-                //    gameObjects.Add(new GhostBace(x, y, ObjectNames.Ghost, AnimationType.PinkyLeft));
-                //    break;
-                //case '7':
-                //    gameObjects.Add(new GhostBace(x, y, ObjectNames.Ghost, AnimationType.ClydeDown));
-                //    break;
-                //case '8':
-                //    gameObjects.Add(new GhostBace(x, y, ObjectNames.Ghost, AnimationType.InkyRight));
-                //    break;
+                case '6':
+                    gameObjects.Add(new Pinky(x, y));
+                    break;
+                case '7':
+                    gameObjects.Add(new Inky(x, y));
+                    break;
+                case '8':
+                    gameObjects.Add(new Clyde(x, y));
+                    break;
             }
 
             if (squareType != '0')

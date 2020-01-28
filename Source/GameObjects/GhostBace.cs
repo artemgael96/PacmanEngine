@@ -1,10 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
-using PacmanEngine.Components.Actors;
 using PacmanEngine.Components.Base;
 using PacmanEngine.Components.Graphics;
 using ConsoleApp.Source.Helpers;
@@ -14,16 +10,16 @@ namespace ConsoleApp.Source.GameObjects
     public abstract class GhostBace : GameObject
     {
         protected enum Direction { Up, Down, Left, Right }
-        protected enum GhostState { Regular, BlueGhost, Eyes }
+        public enum GhostState { Regular, BlueGhost, Eyes }
 
-        private const int RegularGhostSpeed = Coordinate.Multiplier / 8;
+        private const int RegularGhostSpeed = Coordinate.Multiplier / 16;
         private const int BlueGhostSpeed = Coordinate.Multiplier / 10;
-        private const int EyesSpeed = Coordinate.Multiplier / 16;
+        private const int EyesSpeed = Coordinate.Multiplier / 8;
 
         private Coordinate step;
 
         protected Direction currentDirection = Direction.Down;
-        protected GhostState currentState = GhostState.Regular;
+        public GhostState currentState = GhostState.Regular;
 
         public GhostBace(int x, int y, string name, AnimationType? animationType) : base(x, y, name, animationType) { }
 
@@ -35,7 +31,7 @@ namespace ConsoleApp.Source.GameObjects
             Animation.Location += step;
             if (Animation.Location.isRoundAll())
             {
-                var target = GetTargetCoordinate(ManagerObject.Instance.PacmanLocation);
+                var target = GetTargetCoordinate(Manager.Instance.PacmanLocation);
 
                 var path = PathFinder.GetPath(Animation.Location, target);
 

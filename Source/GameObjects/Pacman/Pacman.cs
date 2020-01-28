@@ -5,7 +5,7 @@ using System.Collections.Generic;
 
 namespace ConsoleApp.Source.GameObjects
 {
-    class Pacman : GameObject, IProtagonist
+    public class Pacman : GameObject, IProtagonist
     {
         private readonly int speed = Coordinate.Multiplier / 8;
         private DirectionKeys currentDirection = DirectionKeys.Up;
@@ -83,8 +83,14 @@ namespace ConsoleApp.Source.GameObjects
         public void Collide(IEnumerable<IGameObject> collisions)
         {
             foreach (var obj in collisions)
-                if (obj.Name == ObjectNames.Coin || obj.Name == ObjectNames.BigCoin)
+                if (obj.Name == ObjectNames.Coin)
                     obj.IsEnabled = false;
+            foreach (var obj in collisions)
+                if (obj.Name == ObjectNames.BigCoin)
+                {
+                    obj.IsEnabled = false;
+                    Manager.Instance.BigCoinEatenByPacman();
+                }
         }
     }
 }
