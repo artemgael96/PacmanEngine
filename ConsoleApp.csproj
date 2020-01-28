@@ -50,11 +50,14 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Source\GameObjects\BlinkyObject.cs" />
+    <Compile Include="Source\GameObjects\Ghosts\Blinky.cs" />
     <Compile Include="Source\GameObjects\GameObject.cs" />
     <Compile Include="Source\GameObjects\GhostBace.cs" />
-    <Compile Include="Source\GameObjects\ManagerObject.cs" />
-    <Compile Include="Source\GameObjects\Pacman.cs" />
+    <Compile Include="Source\GameObjects\Ghosts\Clyde.cs" />
+    <Compile Include="Source\GameObjects\Ghosts\Inky.cs" />
+    <Compile Include="Source\GameObjects\Manager.cs" />
+    <Compile Include="Source\GameObjects\Pacman\Pacman.cs" />
+    <Compile Include="Source\GameObjects\Ghosts\Pinky.cs" />
     <Compile Include="Source\Helpers\CoordinateExtension.cs" />
     <Compile Include="Source\ObjectNames.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

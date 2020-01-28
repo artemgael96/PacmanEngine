@@ -1,18 +1,15 @@
-﻿using PacmanEngine.Components.Graphics;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
+
 using PacmanEngine.Components.Actors;
 using PacmanEngine.Components.Base;
 using PacmanEngine.Components.Graphics;
 
+
 namespace ConsoleApp.Source.GameObjects
 {
-    class BlinkyObject : GhostBace
+    class Blinky : GhostBace
     {
-        public BlinkyObject(int x, int y) : base(x, y, ObjectNames.Ghost, AnimationType.BlinkyDown) { }
+        public Blinky(int x, int y) : base(x, y, ObjectNames.Ghost, AnimationType.BlinkyDown) { }
 
         protected override Animation GetAnimation()
         {
@@ -35,7 +32,8 @@ namespace ConsoleApp.Source.GameObjects
                         animationType = AnimationType.BlinkyRight;
                         break;
                 }
-            } else if (currentState == GhostState.Eyes)
+            }
+            else if (currentState == GhostState.Eyes)
             {
                 switch (currentDirection) 
                 {
@@ -61,26 +59,6 @@ namespace ConsoleApp.Source.GameObjects
             var y = PacmanLocation.Y / Coordinate.Multiplier;
 
             return new Coordinate(x * Coordinate.Multiplier, y * Coordinate.Multiplier);
-        }
-
-        //protected override Coordinate GetTargetCoordinate(Coordinate PacmanLocation)
-        //{
-        //    var pacmanDirection = ManagerObject.Instance.PacmanDirection;
-        //    var target = new Coordinate
-        //      ((Coordinate.WorldWidth + (PacmanLocation.X + pacmanDirection.X * 4)) % Coordinate.WorldWidth,
-        //      (Coordinate.WorldHeight + (PacmanLocation.Y + pacmanDirection.Y * 4)) % Coordinate.WorldHeight);
-
-        //    if (PathFinder.isSquareEmpty(target))
-        //        return target;
-        //    else
-        //        return PacmanLocation;
-        //}
-
-        public void Collide(IEnumerable<IGameObject> collisions)
-        {
-            foreach (var obj in collisions)
-                if (obj.Name == ObjectNames.Coin)
-                    obj.IsEnabled = false;
         }
     }
 }
