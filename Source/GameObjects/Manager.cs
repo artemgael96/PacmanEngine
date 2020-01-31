@@ -15,7 +15,7 @@ namespace ConsoleApp.Source.GameObjects
     class Manager : IGameObject
     {
         public static Manager Instance { get; private set; }
-        public void Initialize(IEnumerable<IGameObject> gameObjects)
+        public void Initialize(IEnumerable<GameObject> gameObjects)
         {
             Instance = new Manager(gameObjects);
         }
@@ -23,25 +23,44 @@ namespace ConsoleApp.Source.GameObjects
         public bool IsEnabled { get { return true; } set { } }
         //public bool BigCoinEatenByPacman { get { return true; } set { } }
         public Animation Animation { get; set; }
+        private readonly GameObject pacman;
+        private readonly GameObject background;
+        private readonly GameObject[] ghost;
 
-        private readonly IGameObject pacman;
-        private readonly IGameObject background;
-        private readonly IGameObject[] ghost;
+        public void BigCoinEatenByPacman(bool BigCoinTimerOnOff) {            
+            var mazeWhite = AnimationFactory.CreateAnimation(AnimationType.MazeWhite);
+            var mazeBlue = AnimationFactory.CreateAnimation(AnimationType.MazeBlue);
+            if (BigCoinTimerOnOff)
+            {
+                Instance.background.Animation = mazeWhite;
+                foreach (var ghost in Instance.ghost)
+                {
+                    (ghost as GhostBace).SetBlueGhostState();
+                }
+            }
+            else
+            {
+                Instance.background.Animation = mazeBlue;
+                foreach (var ghost in Instance.ghost)
+                {
+                    (ghost as GhostBace).SetRegularGhostState();
+                }
+            }
 
-        public void BigCoinEatenByPacman() {
-           var changedGhostStateToBlueGhost = GhostBace.GhostState.BlueGhost;
-           var animationBackgound = AnimationFactory.CreateAnimation(AnimationType.MazeWhite);
-            AnimationType animationType = AnimationType.BlueGhost;
-            //if () {
-                var a = Blinky.GhostState.Regular;
-                a = changedGhostStateToBlueGhost;
-                //Pinky.GhostState.BlueGhost;
-                //Inky.GhostState.BlueGhost;
-                //Clyde.GhostState.BlueGhost;
-            //} 
-            //Animation.Location = new Coordinate(0, 0);
+            if (BigCoinTimerOnOff) {
+
+            }
         }
- 
+
+        public void GhostEatenByPacman() {
+            foreach (var ghost in Instance.ghost)
+            {
+                (ghost as GhostBace).SetEyesGhostState();
+                ((GhostBace)ghost).SetEyesGhostState();
+
+            }
+        }
+
 
 
         public Coordinate PacmanLocation {
@@ -69,7 +88,7 @@ namespace ConsoleApp.Source.GameObjects
                 }
             }
         }
-        public Manager(IEnumerable<IGameObject> gameObjects) 
+        public Manager(IEnumerable<GameObject> gameObjects) 
         {
             pacman = gameObjects.Single(x => x.Name == ObjectNames.Pacman);
             background = gameObjects.Single(x => x.Name == ObjectNames.Background);

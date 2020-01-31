@@ -60,8 +60,8 @@ namespace ConsoleApp.Source.GameObjects.Ghosts
         {
             var pacmanDirection = Manager.Instance.PacmanDirection;
             var target = new Coordinate
-              ((Coordinate.WorldWidth + (PacmanLocation.X + pacmanDirection.X % 4)) % Coordinate.WorldWidth,
-              (Coordinate.WorldHeight + (PacmanLocation.Y + pacmanDirection.Y % 4)) % Coordinate.WorldHeight);
+              ((Coordinate.WorldWidth + (PacmanLocation.X + pacmanDirection.X / 4)) % Coordinate.WorldWidth,
+              (Coordinate.WorldHeight + (PacmanLocation.Y + pacmanDirection.Y / 4)) % Coordinate.WorldHeight);
 
             if (PathFinder.isSquareEmpty(target))
                 return target;

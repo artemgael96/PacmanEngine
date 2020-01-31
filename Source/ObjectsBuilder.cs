@@ -45,9 +45,9 @@ namespace ConsoleApp.Source
                 case '7':
                     gameObjects.Add(new Inky(x, y));
                     break;
-                case '8':
-                    gameObjects.Add(new Clyde(x, y));
-                    break;
+                //case '8':
+                //    gameObjects.Add(new Clyde(x, y));
+                //    break;
             }
 
             if (squareType != '0')

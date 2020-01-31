@@ -11,6 +11,8 @@ namespace ConsoleApp.Source.GameObjects
         private DirectionKeys currentDirection = DirectionKeys.Up;
         private bool alive = true;
         private Coordinate step;
+        private int BigCoinTimer;
+        private bool BigCoinTimerOnOff;
         public Pacman(int x, int y) : base(x, y, ObjectNames.Pacman, AnimationType.PacmanUp) { }
         public DirectionKeys PressedKeys
         {
@@ -70,6 +72,7 @@ namespace ConsoleApp.Source.GameObjects
 
         public override void Update()
         {
+            ExistTime();
             if (PathFinder.CanMove(Animation.Location, step))
             {
                 Animation.Location += step;
@@ -82,15 +85,32 @@ namespace ConsoleApp.Source.GameObjects
         }
         public void Collide(IEnumerable<IGameObject> collisions)
         {
-            foreach (var obj in collisions)
-                if (obj.Name == ObjectNames.Coin)
-                    obj.IsEnabled = false;
-            foreach (var obj in collisions)
-                if (obj.Name == ObjectNames.BigCoin)
+            foreach (var objCoin in collisions) { 
+                if (objCoin.Name == ObjectNames.Coin)
+                { objCoin.IsEnabled = false; }
+            }
+            foreach (var objBigCoin in collisions)
+                if (objBigCoin.Name == ObjectNames.BigCoin)
                 {
-                    obj.IsEnabled = false;
-                    Manager.Instance.BigCoinEatenByPacman();
+                    BigCoinTimerOnOff = true;
+                    objBigCoin.IsEnabled = false;
+                    Manager.Instance.BigCoinEatenByPacman(BigCoinTimerOnOff);
                 }
+            foreach (var objGhost in collisions) { 
+                if (objGhost.Name == ObjectNames.Ghost) { 
+                    Manager.Instance.GhostEatenByPacman();
+                }
+            }
+        }
+
+        public void ExistTime() {
+            if (BigCoinTimerOnOff)
+                BigCoinTimer += 1;
+            if (BigCoinTimer == 300) {
+                BigCoinTimerOnOff = false;
+                BigCoinTimer = 0;
+                Manager.Instance.BigCoinEatenByPacman(BigCoinTimerOnOff);
+            }
         }
     }
 }

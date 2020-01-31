@@ -10,28 +10,38 @@ namespace ConsoleApp.Source.GameObjects
     public abstract class GhostBace : GameObject
     {
         protected enum Direction { Up, Down, Left, Right }
-        public enum GhostState { Regular, BlueGhost, Eyes }
+        protected enum GhostState { Regular, BlueGhost, Eyes }
 
         private const int RegularGhostSpeed = Coordinate.Multiplier / 16;
-        private const int BlueGhostSpeed = Coordinate.Multiplier / 10;
-        private const int EyesSpeed = Coordinate.Multiplier / 8;
+        private const int BlueGhostSpeed = Coordinate.Multiplier / 20;
+        private const int EyesSpeed = Coordinate.Multiplier / 10;
 
         private Coordinate step;
 
         protected Direction currentDirection = Direction.Down;
-        public GhostState currentState = GhostState.Regular;
+        protected GhostState currentState = GhostState.Regular;
 
         public GhostBace(int x, int y, string name, AnimationType? animationType) : base(x, y, name, animationType) { }
 
+        public void abc(bool a1) { }
         protected abstract Animation GetAnimation();
         protected abstract Coordinate GetTargetCoordinate(Coordinate PacmanLocation);
 
+        Coordinate homeGhost = new Coordinate(9 * Coordinate.Multiplier,13 * Coordinate.Multiplier);
+        Coordinate target;
         public override void Update()
         {
             Animation.Location += step;
             if (Animation.Location.isRoundAll())
             {
-                var target = GetTargetCoordinate(Manager.Instance.PacmanLocation);
+                 
+                if (currentState != GhostState.Regular)
+                {
+                    target = homeGhost;
+                }
+                else {
+                    target = GetTargetCoordinate(Manager.Instance.PacmanLocation);
+                }
 
                 var path = PathFinder.GetPath(Animation.Location, target);
 
@@ -83,6 +93,18 @@ namespace ConsoleApp.Source.GameObjects
                     return new Coordinate(currentSpeed, 0);
                 default: throw new Exception("Unknown ghost currentDirectio");
             }
+        }
+        public void SetBlueGhostState() {
+            currentState = GhostState.BlueGhost;
+        }
+
+        public void SetRegularGhostState()
+        {
+            currentState = GhostState.Regular;
+        }
+        public void SetEyesGhostState()
+        {
+            currentState = GhostState.Eyes;
         }
     }
 }
